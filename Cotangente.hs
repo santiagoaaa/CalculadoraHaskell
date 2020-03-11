@@ -1,3 +1,4 @@
+module Cotangente (cotangente) where
 import qualified Tangente as TAN
 
 cotangente :: Double->Double->Double

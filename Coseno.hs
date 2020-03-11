@@ -1,15 +1,9 @@
 module Coseno (coseno) where
-
-potencia :: Double -> Double -> Double
-potencia x 0 = 1
-potencia x n = (x) * (potencia x (n-1) )
-
-factorial :: Double -> Double
-factorial 0 = 1
-factorial n = n * factorial (n - 1)
+import qualified Potencia as POTENCIA
+import qualified Factorial as FACTORIAL
 
 division :: Double -> Double -> Double
-division x n =  ( (potencia (-1) n ) / (factorial(2*n)) )  *  (potencia x (2*n))
+division x n =  ( (POTENCIA.potencia (-1) n ) / (FACTORIAL.factorial(2*n)) )  *  (POTENCIA.potencia x (2*n))
 
 coseno :: Double -> Double -> Double
 coseno angulo (-1) = 0

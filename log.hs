@@ -1,3 +1,4 @@
+module Log (logaritmo) where
 import qualified Ln as LN
 
 logaritmo :: Double->Double->Double

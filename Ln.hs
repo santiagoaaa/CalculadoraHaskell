@@ -1,9 +1,7 @@
 module Ln (ln) where
+import qualified Potencia as POTENCIA
 
 --Log base e -> ln
-potencia :: Double -> Double -> Double
-potencia x 0 = 1
-potencia x n = (x) * (potencia x (n-1) )
 
 suma :: Double -> Double
 suma n = (2*n)+1
@@ -12,7 +10,7 @@ divisionN :: Double -> Double
 divisionN n = ( 1 / (suma n)) 
 
 divisionX :: Double -> Double -> Double
-divisionX x n = potencia ((x-1)/(x+1)) (suma n)
+divisionX x n = POTENCIA.potencia ((x-1)/(x+1)) (suma n)
 
 multiplicacion :: Double -> Double -> Double
 multiplicacion x n = ((divisionN n) * (divisionX x n))

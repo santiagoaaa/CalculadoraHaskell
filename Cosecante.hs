@@ -1,3 +1,4 @@
+module Cosecante (cosecante) where
 import qualified Seno as SEN
 
 cosecante :: Double->Double->Double
