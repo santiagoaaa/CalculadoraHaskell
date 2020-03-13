@@ -16,6 +16,7 @@ import qualified Division as DIV
 import qualified Media as MED
 import qualified Varianza as VAR
 import qualified Desviacion as DES
+import qualified Raiz as RAI
 import System.IO
 
 main = do
@@ -24,13 +25,14 @@ main = do
 
 doLoop = do
     putStrLn "***MENU DE OPERACIONES***"
-    putStrLn "Presiona el numero de opcion que quieras \n1 -> Aritmeticas\n2 -> Trigonometricas\n3 -> Logaritmos-Exponenciales\n4 -> Estadistica\nq -> salir"
+    putStrLn "Presiona el numero de opcion que quieras \n1 -> Aritmeticas\n2 -> Trigonometricas\n3 -> Logaritmos-Exponenciales-Raiz Cuadrada\n4 -> Estadistica\nq -> salir"
     opcion <- getLine
     case opcion of
         'q':_-> do return()
         '1':_ ->do doAritmeticas
         '2':_ ->do doTrigonometricas
         '3':_ ->do doLogaritmos
+        '4':_ ->do doEstadisticas
 
 
 doAritmeticas = do
@@ -123,7 +125,7 @@ doTrigonometricas = do
 
 doLogaritmos = do
     putStrLn("Logaritmos-Exponenciales")
-    putStrLn("1 -> Log\n2 -> Ln\nq -> menu anterior")
+    putStrLn("1 -> Log\n2 -> Ln\n3 -> Exp\n4 -> Raiz Cuadrada\nq -> menu anterior")
     opcion <- getLine
     case opcion of
         'q':_-> do doLoop
@@ -141,6 +143,19 @@ doLogaritmos = do
                     numero <- readLn
                     putStrLn("\nRESULTADO: ")
                     print (LN.ln numero 100)
+                    doLogaritmos
+
+        '3':_ -> do putStrLn("Exponencial")
+                    putStrLn("Numero")
+                    numero <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print (EXP.expo numero 100)
+                    doLogaritmos
+        '4':_ -> do putStrLn("Raiz cuadrada")
+                    putStrLn("Numero")
+                    numero <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print (RAI.raiz numero)
                     doLogaritmos
         
 doEstadisticas = do
@@ -165,6 +180,6 @@ doEstadisticas = do
                     putStrLn("Ingresa [a,b,c,...]")
                     numeros <- readLn
                     putStrLn("\nRESULTADO: ")
-                    print(VAR.varianza numeros)
+                    print(DES.desviacion numeros)
                     doEstadisticas
                     
