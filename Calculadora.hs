@@ -8,7 +8,14 @@ import qualified Log as LOG
 import qualified Potencia as POT
 import qualified Secante as SEC
 import qualified Seno as SEN
-import qualified Tangente as Tangente
+import qualified Tangente as TAN
+import qualified Suma as SUM
+import qualified Resta as RES
+import qualified Multiplicacion as MUL
+import qualified Division as DIV
+import qualified Media as MED
+import qualified Varianza as VAR
+import qualified Desviacion as DES
 import System.IO
 
 main = do
@@ -17,7 +24,7 @@ main = do
 
 doLoop = do
     putStrLn "***MENU DE OPERACIONES***"
-    putStrLn "Presiona el numero de opcion que quieras \n1 -> Aritmeticas\n2 -> Trigonometricas\n3 -> Logaritmos\n4 -> Estadistica\nq -> salir"
+    putStrLn "Presiona el numero de opcion que quieras \n1 -> Aritmeticas\n2 -> Trigonometricas\n3 -> Logaritmos-Exponenciales\n4 -> Estadistica\nq -> salir"
     opcion <- getLine
     case opcion of
         'q':_-> do return()
@@ -34,13 +41,34 @@ doAritmeticas = do
          'q':_-> do doLoop
 
          '+':_ -> do putStrLn("Suma")
+                     putStrLn("Ingresa los numeros a sumar [a,b,c...]")
+                     numeros <- readLn
+                     putStrLn("\nRESULTADO: ")
+                     print(SUM.suma numeros)
                      doAritmeticas
-
          '-':_ -> do putStrLn("Resta")
+                     putStrLn("Primer numero")
+                     a <- readLn
+                     putStrLn("Segundo numero")
+                     b <- readLn
+                     putStrLn("\nRESULTADO: ")
+                     print(RES.resta a b)
                      doAritmeticas
-         '*':_ -> do putStrLn("Multiplicacion")
+         '*':_ -> do putStrLn("Multiplicacion a*b")
+                     putStrLn("Primer numero")
+                     a <- readLn
+                     putStrLn("Segundo numero")
+                     b <- readLn
+                     putStrLn("\nRESULTADO: ")
+                     print(MUL.multiplicacion a b)
                      doAritmeticas
-         '/':_ -> do putStrLn("Division")
+         '/':_ -> do putStrLn("Division a/b")
+                     putStrLn("Primer numero")
+                     a <- readLn
+                     putStrLn("Segundo numero")
+                     b <- readLn
+                     putStrLn("\nRESULTADO: ")
+                     print(DIV.division a b)
                      doAritmeticas
 
 doTrigonometricas = do
@@ -51,26 +79,92 @@ doTrigonometricas = do
         'q':_-> do doLoop
         
         '1':_ -> do putStrLn("Coseno")
+                    putStrLn("Ingresa angulo en radianes")
+                    angulo <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print ( round( COS.coseno (angulo) 100))
+                    putStrLn("\n")
                     doTrigonometricas
         '2':_ -> do putStrLn("Seno")
+                    putStrLn("Ingresa angulo en radianes")
+                    angulo <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print ( round(SEN.seno (angulo) 100))
+                    putStrLn("\n")
                     doTrigonometricas
         '3':_ -> do putStrLn("Tangente")
+                    putStrLn("Ingresa angulo en radianes")
+                    angulo <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print ( TAN.tangente (angulo) 100)
+                    putStrLn("\n")
                     doTrigonometricas
         '4':_ -> do putStrLn("Secante")
+                    putStrLn("Ingresa angulo en radianes")
+                    angulo <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print (round( SEC.secante (angulo) 100))
+                    putStrLn("\n")
                     doTrigonometricas
         '5':_ -> do putStrLn("Cotangente")
+                    putStrLn("Ingresa angulo en radianes")
+                    angulo <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print ( round(COT.cotangente (angulo) 100))
+                    putStrLn("\n")
                     doTrigonometricas
         '6':_ -> do putStrLn("Cosecante")
+                    putStrLn("Ingresa angulo en radianes")
+                    angulo <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print (round( CSC.cosecante (angulo) 100))
+                    putStrLn("\n")
                     doTrigonometricas
 
 doLogaritmos = do
-    putStrLn("Logaritmos")
+    putStrLn("Logaritmos-Exponenciales")
     putStrLn("1 -> Log\n2 -> Ln\nq -> menu anterior")
     opcion <- getLine
     case opcion of
         'q':_-> do doLoop
         '1':_ -> do putStrLn("Log")
+                    putStrLn("Numero")
+                    numero <- readLn
+                    putStrLn("Base")
+                    base <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print ( round( LOG.logaritmo numero base ))
+                    putStrLn("\n")
                     doLogaritmos
         '2':_ -> do putStrLn("Ln")
+                    putStrLn("Numero")
+                    numero <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print (LN.ln numero 100)
                     doLogaritmos
         
+doEstadisticas = do
+    putStrLn("Estadistica")
+    putStrLn("1 -> Media\n2 -> Varianza\n3 -> Desviacion estandar\nq -> menu anterior")
+    opcion <- getLine
+    case opcion of
+        'q':_-> do doLoop
+        '1':_ -> do putStrLn("Media")
+                    putStrLn("Ingresa [a,b,c,...]")
+                    numeros <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print(MED.media numeros)
+                    doEstadisticas
+        '2':_ -> do putStrLn("Varianza")
+                    putStrLn("Ingresa [a,b,c,...]")
+                    numeros <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print(VAR.varianza numeros)
+                    doEstadisticas
+        '3':_ -> do putStrLn("Desviacion estandar")
+                    putStrLn("Ingresa [a,b,c,...]")
+                    numeros <- readLn
+                    putStrLn("\nRESULTADO: ")
+                    print(VAR.varianza numeros)
+                    doEstadisticas
+                    
